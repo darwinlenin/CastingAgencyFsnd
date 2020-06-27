@@ -1,0 +1,19 @@
+{% extends 'layouts/main.html' %}
+{% block title %}Casting Agency | Movies{% endblock %}
+{% block content %}
+{% for area in areas %}
+<h3>{{ area.title }}, {{ area.release_date }}</h3>
+	<ul class="items">
+		{% for movie in area.movies %}
+		<li>
+			<a href="/movies/{{ movie.id }}">
+				<i class="fas fa-music"></i>
+				<div class="item">
+					<h5>{{ movie.name }}</h5>
+				</div>
+			</a>
+		</li>
+		{% endfor %}
+	</ul>
+{% endfor %}
+{% endblock %}

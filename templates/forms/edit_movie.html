@@ -1,0 +1,69 @@
+{% extends 'layouts/main.html' %}
+{% block title %}Edit movie{% endblock %}
+{% block content %}
+  <div class="form-wrapper">
+    <form class="form" method="post" action="/movies/{{movie.id}}/edit">
+      <h3 class="form-heading">Edit movie <em>{{ movie.name }}</em> <a href="{{ url_for('index') }}" title="Back to homepage"><i class="fa fa-home pull-right"></i></a></h3>
+      <div class="form-group">
+        <label for="name">Name</label>
+        {{ form.name(class_ = 'form-control', autofocus = true) }}
+      </div>
+      <div class="form-group">
+          <label>City & State</label>
+          <div class="form-inline">
+            <div class="form-group">
+              {{ form.city(class_ = 'form-control', placeholder='City', autofocus = true) }}
+            </div>
+            <div class="form-group">
+              {{ form.state(class_ = 'form-control', placeholder='State', autofocus = true) }}
+            </div>
+          </div>
+      </div>
+      <div class="form-group">
+        <label for="address">Address</label>
+        {{ form.address(class_ = 'form-control', autofocus = true) }}
+      </div>
+      <div class="form-group">
+          <label for="phone">Phone</label>
+          {{ form.phone(class_ = 'form-control', placeholder='xxx-xxx-xxxx', autofocus = true) }}
+        </div>
+      <div class="form-group">
+        <label for="genres">Genres</label>
+        <small>Ctrl+Click to select multiple</small>
+        {{ form.genres(class_ = 'form-control', placeholder='Genres, separated by commas', id='genres', autofocus = true) }}
+      </div>
+      <div class="form-group">
+          <label for="genres">Facebook Link</label>
+          {{ form.facebook_link(class_ = 'form-control', placeholder='http://', id='form.facebook_link', autofocus = true) }}
+        </div>
+      <div class="form-group">
+          <label for="genres">Image Link</label>
+          {{ form.image_link(class_ = 'form-control', placeholder='http://', id='form.image_link', autofocus = true) }}
+      </div>
+      <div class="form-group">
+          <label for="genres">Website Link</label>
+          {{ form.website(class_ = 'form-control', placeholder='http://', id='form.website', autofocus = true) }}
+        </div>
+      <div class="form-group">
+        <label for="genres">Seeking Talent</label>
+        {{ form.seeking_talent(class_ = 'form-control', id='seeking_talent', placeholder='Seeking Talent', autofocus = true) }}
+      </div>
+      <div class="form-group">
+        <label for="genres">Seeking Description</label>
+        {{ form.seeking_description(class_ = 'form-control', id='seeking_description', placeholder='Seeking Description', autofocus = true) }}
+      </div>
+      <input type="submit" value="Create movie" class="btn btn-primary btn-lg btn-block">
+    </form>
+  </div>
+  <script>
+  const seekingTalentCheck = document.querySelector('#seeking_talent');
+  seekingTalentCheck.onchange = function(e) {
+    if(document.querySelector('#seeking_talent').value==="False"){
+      document.querySelector("#content > div > form > div:nth-child(11)").style.display="none";
+      document.querySelector('#seeking_description').value="";
+    } else if(document.querySelector('#seeking_talent').value==="True"){
+      document.querySelector("#content > div > form > div:nth-child(11)").style.display="block";
+    }
+  }
+  </script>
+{% endblock %}

@@ -1,0 +1,6 @@
+
+AUTH0_DOMAIN=zoegeop.auth0.com
+API_AUDIENCE=castingagency
+CLIENT_ID=XbZqLqDuIsXfk0YltHcbgCO296TuByCj
+CLIENT_SECRECT=155j7SYBXKHqchoRyVYvRo2lmTUgi8wNQ-CHcUITEmwBmMUyCNF3xv3a7n9B0OZ1
+DATABASE_URL=postgresql://castingagency:castingagency@localhost:5432/castingagency

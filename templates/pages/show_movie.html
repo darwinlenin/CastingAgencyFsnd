@@ -1,0 +1,96 @@
+{% extends 'layouts/main.html' %}
+{% block title %}movie Search{% endblock %}
+{% block content %}
+<div class="row">
+	<div class="col-sm-6">
+		<h1 class="monospace">
+			{{ movie.name }}
+		</h1>
+		<button id="delete-button" class="btn btn-danger btn-lg" data-id="{{ movie.id }}">Remove movie</button>
+		<a href="/movies/{{ movie.id }}/edit"><button id="edit-button" class="btn btn-success btn-lg" data-id="{{ movie.id }}">Edit movie</button></a>
+		<p class="subtitle">
+			ID: {{ movie.id }}
+		</p>
+		<div class="genres">
+			{% for genre in movie.genres %}
+			<span class="genre">{{ genre }}</span>
+			{% endfor %}
+		</div>
+		<p>
+			<i class="fas fa-globe-americas"></i> {{ movie.city }}, {{ movie.state }}
+		</p>
+		<p>
+			<i class="fas fa-map-marker"></i> {% if movie.address %}{{ movie.address }}{% else %}No Address{% endif %}
+		</p>
+		<p>
+			<i class="fas fa-phone-alt"></i> {% if movie.phone %}{{ movie.phone }}{% else %}No Phone{% endif %}
+		</p>
+		<p>
+			<i class="fas fa-link"></i> {% if movie.website %}<a href="{{ movie.website }}" target="_blank">{{ movie.website }}</a>{% else %}No Website{% endif %}
+		</p>
+		<p>
+			<i class="fab fa-facebook-f"></i> {% if movie.facebook_link %}<a href="{{ movie.facebook_link }}" target="_blank">{{ movie.facebook_link }}</a>{% else %}No Facebook Link{% endif %}
+		</p>
+		{% if movie.seeking_talent %}
+		<div class="seeking">
+			<p class="lead">Currently seeking talent</p>
+			<div class="description">
+				<i class="fas fa-quote-left"></i> {{ movie.seeking_description }} <i class="fas fa-quote-right"></i>
+			</div>
+		</div>
+		{% else %}	
+		<p class="not-seeking">
+			<i class="fas fa-moon"></i> Not currently seeking talent
+		</p>
+		{% endif %}
+	</div>
+	<div class="col-sm-6">
+		<img src="{{ movie.image_link }}" alt="movie Image" />
+	</div>
+</div>
+<section>
+	<h2 class="monospace">{{ movie.upcoming_comeouts_count }} Upcoming {% if movie.upcoming_comeouts_count == 1 %}comeout{% else %}comeouts{% endif %}</h2>
+	<div class="row">
+		{%for comeout in movie.upcoming_comeouts %}
+		<div class="col-sm-4">
+			<div class="tile tile-comeout">
+				<img src="{{ comeout.actor_image_link }}" alt="comeout actor Image" />
+				<h5><a href="/actors/{{ comeout.actor_id }}">{{ comeout.actor_name }}</a></h5>
+				<h6>{{ comeout.start_time|datetime('full') }}</h6>
+			</div>
+		</div>
+		{% endfor %}
+	</div>
+</section>
+<section>
+	<h2 class="monospace">{{ movie.past_comeouts_count }} Past {% if movie.past_comeouts_count == 1 %}comeout{% else %}comeouts{% endif %}</h2>
+	<div class="row">
+		{%for comeout in movie.past_comeouts %}
+		<div class="col-sm-4">
+			<div class="tile tile-comeout">
+				<img src="{{ comeout.actor_image_link }}" alt="comeout actor Image" />
+				<h5><a href="/actors/{{ comeout.actor_id }}">{{ comeout.actor_name }}</a></h5>
+				<h6>{{ comeout.start_time|datetime('full') }}</h6>
+			</div>
+		</div>
+		{% endfor %}
+	</div>
+</section>
+<script>
+const deleteBtns = document.querySelector('#delete-button');
+deleteBtns.onclick = function(e) {
+	const movie_id = e.target.dataset['id'];
+	console.log(movie_id);
+	fetch('/movies/' + movie_id, {
+		method: 'DELETE'
+	})
+	.then(function() {
+		
+	})
+}
+</script>
+
+{% endblock %}
+
+
+

@@ -1,0 +1,17 @@
+{% extends 'layouts/main.html' %}
+{% block title %}Casting Agency | come outs{% endblock %}
+{% block content %}
+<div class="row comeouts">
+    {%for comeout in comeouts %}
+    <div class="col-sm-4">
+        <div class="tile tile-comeout">
+            <img src="{{ comeout.actor_image_link }}" alt="actor Image" />
+            <h4>{{ comeout.start_time|datetime('full') }}</h4>
+            <h5><a href="/actors/{{ comeout.actor_id }}">{{ comeout.actor_name }}</a></h5>
+            <p>playing at</p>
+            <h5><a href="/movies/{{ comeout.movie_id }}">{{ comeout.movie_name }}</a></h5>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,80 @@
+{% extends 'layouts/main.html' %}
+{% block title %}{{ actor.name }} | actor{% endblock %}
+{% block content %}
+<div class="row">
+	<div class="col-sm-6">
+		<h1 class="monospace">
+			{{ actor.name }}
+		</h1>
+		<a href="/actors/{{ actor.id }}/edit"><button id="edit-button" class="btn btn-success btn-lg" data-id="{{ actor.id }}">Edit actor</button></a>
+		<p class="subtitle">
+			ID: {{ actor.id }}
+		</p>
+		<div class="genres">
+			{% for genre in actor.genres %}
+			<span class="genre">{{ genre }}</span>
+			{% endfor %}
+		</div>
+		<p>
+			<i class="fas fa-globe-americas"></i> {{ actor.city }}, {{ actor.state }}
+		</p>
+		<p>
+			<i class="fas fa-age-alt"></i> {% if actor.age %}{{ actor.age }}{% else %}No Age{% endif %}
+        </p>
+		<p>
+			<i class="fas fa-phone-alt"></i> {% if actor.phone %}{{ actor.phone }}{% else %}No Phone{% endif %}
+        </p>
+        <p>
+			<i class="fas fa-link"></i> {% if actor.website %}<a href="{{ actor.website }}" target="_blank">{{ actor.website }}</a>{% else %}No Website{% endif %}
+		</p>
+		<p>
+			<i class="fab fa-facebook-f"></i> {% if actor.facebook_link %}<a href="{{ actor.facebook_link }}" target="_blank">{{ actor.facebook_link }}</a>{% else %}No Facebook Link{% endif %}
+        </p>
+		{% if actor.seeking_movie %}
+		<div class="seeking">
+			<p class="lead">Currently seeking performance movies</p>
+			<div class="description">
+				<i class="fas fa-quote-left"></i> {{ actor.seeking_description }} <i class="fas fa-quote-right"></i>
+			</div>
+		</div>
+		{% else %}	
+		<p class="not-seeking">
+			<i class="fas fa-moon"></i> Not currently seeking performance movies
+		</p>
+		{% endif %}
+	</div>
+	<div class="col-sm-6">
+		<img src="{{ actor.image_link }}" alt="movie Image" />
+	</div>
+</div>
+<section>
+	<h2 class="monospace">{{ actor.upcoming_comeouts_count }} Upcoming {% if actor.upcoming_comeouts_count == 1 %}comeout{% else %}comeouts{% endif %}</h2>
+	<div class="row">
+		{%for comeout in actor.upcoming_comeouts %}
+		<div class="col-sm-4">
+			<div class="tile tile-comeout">
+				<img src="{{ comeout.movie_image_link }}" alt="comeout movie Image" />
+				<h5><a href="/movies/{{ comeout.movie_id }}">{{ comeout.movie_name }}</a></h5>
+				<h6>{{ comeout.start_time|datetime('full') }}</h6>
+			</div>
+		</div>
+		{% endfor %}
+	</div>
+</section>
+<section>
+	<h2 class="monospace">{{ actor.past_comeouts_count }} Past {% if actor.past_comeouts_count == 1 %}comeout{% else %}comeouts{% endif %}</h2>
+	<div class="row">
+		{%for comeout in actor.past_comeouts %}
+		<div class="col-sm-4">
+			<div class="tile tile-comeout">
+				<img src="{{ comeout.movie_image_link }}" alt="comeout movie Image" />
+				<h5><a href="/movies/{{ comeout.movie_id }}">{{ comeout.movie_name }}</a></h5>
+				<h6>{{ comeout.start_time|datetime('full') }}</h6>
+			</div>
+		</div>
+		{% endfor %}
+	</div>
+</section>
+
+{% endblock %}
+
