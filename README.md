@@ -13,8 +13,8 @@ https://castingagencyfsnd1.herokuapp.com/
 2. All required configuration settings are included in a bash file which export: [`setup.sh`]
 AUTH0_DOMAIN=zoegeop.auth0.com
 API_AUDIENCE=castingagency
-CLIENT_ID=XbZqLqDuIsXfk0YltHcbgCO296TuByCj
-CLIENT_SECRECT=155j7SYBXKHqchoRyVYvRo2lmTUgi8wNQ-CHcUITEmwBmMUyCNF3xv3a7n9B0OZ1
+CLIENT_ID='CLIENT_ID_HERE'
+CLIENT_SECRECT='CLIENT_SECRECT_HERE'
 
 3. Access of roles:
 Casting Director : All permissions a Casting Assistant has and Add or delete an actor from the database. Modify actors or movies
