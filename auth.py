@@ -31,7 +31,7 @@ print(data.decode("utf-8"))'''
 
 conn = http.client.HTTPSConnection("zoegeop.auth0.com")
 
-payload = "{\"client_id\":\"XbZqLqDuIsXfk0YltHcbgCO296TuByCj\",\"client_secret\":\"155j7SYBXKHqchoRyVYvRo2lmTUgi8wNQ-CHcUITEmwBmMUyCNF3xv3a7n9B0OZ1\",\"audience\":\"castingagency\",\"grant_type\":\"client_credentials\"}"
+payload = "{\"client_id\":\"client_id_here\",\"client_secret\":\"client_secret_here\",\"audience\":\"castingagency\",\"grant_type\":\"client_credentials\"}"
 
 headers = { 'content-type': "application/json" }
 
